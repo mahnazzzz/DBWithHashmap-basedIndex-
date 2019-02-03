@@ -17,6 +17,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -54,7 +56,7 @@ public class FirstDbAssignmentHashMap {
                     System.out.println("Currently loaded map:\n" + (main.hashList.toString()) + "\n");
                     break;
                 case 3:
-                    main.writeTheFile();
+                    main.writeInTheFile();
                     break;
                 case 4:
                     main.loadMap();
@@ -90,7 +92,7 @@ public class FirstDbAssignmentHashMap {
             int total = 0;
             int nRead = 0;
             while ((nRead = inputStream.read(buffer)) != -1) {
-               
+
                 System.out.println(new String(buffer));
                 total += nRead;
             }
@@ -112,17 +114,24 @@ public class FirstDbAssignmentHashMap {
 
     }
 
-    public void writeTheFile() {
+    public void writeInTheFile() {
         byte[] buffer = null;
         int i = 0;
         try {
             FileOutputStream outputStream
                     = new FileOutputStream(fileName);
 
-            for (String object : hashList.values()) {
+            Iterator entries = hashList.entrySet().iterator();
+            while (entries.hasNext()) {
 
-                buffer = object.getBytes();
-                outputStream.write(i);
+                Map.Entry entry = (Map.Entry) entries.next();
+                String key =  (String) entry.getKey();
+                String value = (String) entry.getValue();
+                
+                String sum = key+value;
+
+                buffer = sum.getBytes();
+                
                 outputStream.write(buffer);
                 i++;
 
