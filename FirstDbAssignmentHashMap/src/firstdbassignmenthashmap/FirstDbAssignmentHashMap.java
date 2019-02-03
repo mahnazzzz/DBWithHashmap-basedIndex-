@@ -94,13 +94,13 @@ public class FirstDbAssignmentHashMap {
             while ((nRead = inputStream.read(buffer)) != -1) {
 
                 System.out.println(new String(buffer));
-                total += nRead;
+                total += nRead ;
             }
 
             // Always close files.
             inputStream.close();
 
-            System.out.println("Read " + total + " bytes");
+            System.out.println("Read " + total+ " letters");
         } catch (FileNotFoundException ex) {
             System.out.println(
                     "Unable to open file '"
@@ -128,7 +128,7 @@ public class FirstDbAssignmentHashMap {
                 String key =  (String) entry.getKey();
                 String value = (String) entry.getValue();
                 
-                String sum = key+value;
+                String sum = key+value+"\n";
 
                 buffer = sum.getBytes();
                 
@@ -139,7 +139,7 @@ public class FirstDbAssignmentHashMap {
 
             outputStream.close();
 
-            System.out.println("Wrote " + buffer.length
+            System.out.println("Wrote " + buffer
                     + " bytes");
         } catch (IOException ex) {
             System.out.println(
